@@ -26,7 +26,7 @@ for(int i=1; i<=num; i++){
 	}
 }
 %>
-<% 
+<%-- <% 
 int i ;
 for(i=1; i<num; i++){
 	sum += 1;
@@ -34,7 +34,7 @@ for(i=1; i<num; i++){
 }
 sum += i;
 out.print(num + " = " + sum);
-%>
+%> --%>
 <%= sum %>
 
 </body>
