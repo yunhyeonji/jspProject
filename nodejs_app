@@ -24,7 +24,7 @@ var app = express();
 
 // 라우트를 수행합니다.
 app.get('/', function (request, response, next) {
-    fs.readFile('htmlPage.html', function (error, data) {
+    fs.readFile('HTMLPage2.html', function (error, data) {
         response.send(data.toString());
     });
 });
@@ -41,17 +41,15 @@ server.listen(52273, function () {
 
 // 소켓생성 및 실행
 var io = socketio.listen(server);
-
 io.sockets.on('connection', function (socket) {
     socket.on('reserve', function (data) {
+        //데이터를 받아서 값을 바꾼후 다시 보내버려
         seats[data.y][data.x] = 2;
         io.sockets.emit('reserve', data);
     });
-
-    // socket.on('reset',function(data){
-    //     if(seats[data.x][data.y] == 2){
-    //         seats = 1;
-    //     }
-    //     io.sockets.emit('reset', data);
-    // })
+    socket.on('delete', function () {
+        //데이터를 받아서 값을 바꾼후 다시 보내버려
+        seats[data.y][data.x] = 1;
+        io.sockets.emit('delete', data);
+    });
 });
